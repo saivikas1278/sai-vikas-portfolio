@@ -1053,3 +1053,53 @@ section {
     left: 20px;
   }
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Hero Section Mobile Styles */
+  .hero-section .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-section .hero-text {
+    order: 2;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .hero-section .hero-image {
+    order: 1;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section .hero-text h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-section .hero-text .subtitle {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  .hero-section .hero-text .description {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .hero-section .hero-buttons .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  .scroll-down {
+    margin-top: 20px;
+  }
+}
