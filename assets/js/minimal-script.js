@@ -24,6 +24,7 @@ class MinimalPortfolio {
         
         // Set initial states
         this.updateProgressBar();
+        this.updateToggleVisibility();
     }
 
     bindEvents() {
@@ -54,12 +55,22 @@ class MinimalPortfolio {
             if (this.webglRenderer) {
                 this.resizeWebGL();
             }
+            this.updateToggleVisibility();
         });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.closeMenu();
         });
+    }
+
+    updateToggleVisibility() {
+        if (!this.navToggle) return;
+        if (window.innerWidth <= 1023) {
+            this.navToggle.style.display = 'inline-flex';
+        } else {
+            this.navToggle.style.display = '';
+        }
     }
 
     // ===== WEBGL ANIMATION =====
@@ -215,6 +226,10 @@ class MinimalPortfolio {
         this.isMenuOpen = !this.isMenuOpen;
         this.navToggle.classList.toggle('active');
         this.navMenu.classList.toggle('active');
+
+        if (this.navToggle) {
+            this.navToggle.setAttribute('aria-expanded', String(this.isMenuOpen));
+        }
         
         if (this.isMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -227,6 +242,9 @@ class MinimalPortfolio {
         this.isMenuOpen = false;
         this.navToggle.classList.remove('active');
         this.navMenu.classList.remove('active');
+        if (this.navToggle) {
+            this.navToggle.setAttribute('aria-expanded', 'false');
+        }
         document.body.style.overflow = '';
     }
 

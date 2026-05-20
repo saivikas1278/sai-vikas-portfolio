@@ -24,23 +24,23 @@
             <div class="nav-logo">
                 <span>SV</span>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
-        </div>
-        <div class="nav-menu" id="nav-menu">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- WebGL Hero Section -->
-    <section id="home" class="hero-section">
+    <section id="home" class="hero-section" data-animate>
         <canvas id="webgl-canvas"></canvas>
         <div class="hero-content">
             <div class="hero-text">
@@ -58,7 +58,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section about-section" data-animate>
         <div class="container">
             <div class="section-content" data-scroll>
                 <div class="section-header">
@@ -103,7 +103,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section">
+    <section id="projects" class="projects-section" data-animate>
       <div class="container">
         <div class="section-header">
           <h2>My Projects</h2>
@@ -272,7 +272,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
+    <section id="skills" class="section skills-section" data-animate>
         <div class="container">
             <div class="section-content" data-scroll>
                 <div class="section-header">
@@ -324,7 +324,7 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="education-section">
+    <section id="education" class="education-section" data-animate>
       <div class="container">
         <div class="section-header">
           <h2>Education</h2>
@@ -464,7 +464,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section" data-animate>
         <div class="container">
             <div class="section-content" data-scroll>
                 <div class="section-header">
@@ -599,6 +599,34 @@
                     }, 5000);
                 });
         });
+    </script>
+
+    <!-- Scroll-driven animations: add data-animate observer -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('in-view');
+          });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+      });
+    </script>
+    <script>
+      // Ensure hamburger toggle visible on mobile/tablet if CSS is overridden
+      (function(){
+        function update() {
+          const btn = document.getElementById('nav-toggle');
+          if (!btn) return;
+          if (window.innerWidth <= 1023) btn.style.display = 'inline-flex';
+          else btn.style.display = '';
+        }
+        window.addEventListener('resize', update);
+        document.addEventListener('DOMContentLoaded', update);
+        // run immediately
+        update();
+      })();
     </script>
 </body>
 </html>
