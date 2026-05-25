@@ -1,177 +1,174 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, ChevronDown, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-
-// Custom Inline Brand SVGs
-const GithubIcon = ({ size = 20 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
-
-const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const TwitterIcon = ({ size = 20 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-  </svg>
-);
-
-// Components
-import Navbar from "@/components/navbar";
-import CanvasHero from "@/components/canvas-hero";
-import ProjectCard from "@/components/sections/project-card";
-import CertificationCard from "@/components/sections/certification-card";
-import EducationTimeline from "@/components/sections/education-timeline";
-import ContactForm from "@/components/sections/contact-form";
-
-// Static content with absolute data integrity
-import profile from "@/data/profile.json";
+import { useState } from "react";
 
 export default function Home() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-  };
+  const navLinks = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Contact", href: "#contact" },
+  ];
+
+  const projects = [
+    {
+      title: "Cricket Team Fund Tracker",
+      description: "A comprehensive web portal designed to manage team budgets, match fees, tournament entry costs, and individual player contributions. Features transaction logs, live balance updates, and automated billing statistics.",
+      tags: ["Next.js", "Tailwind CSS", "Node.js", "MongoDB"],
+      github: "https://github.com/saivikas1278/cricket-fund-tracker",
+      demo: "#",
+    },
+    {
+      title: "Local Cricket Tournament Auction App",
+      description: "An interactive real-time bidding dashboard built for local cricket leagues. Includes team budget tracking, visual bid logs, roster management, and live bid state updates.",
+      tags: ["React", "Express", "Socket.io", "MongoDB"],
+      github: "https://github.com/saivikas1278/cricket-auction-app",
+      demo: "#",
+    },
+    {
+      title: "E-Commerce Platform",
+      description: "A secure online shopping application featuring advanced product catalog searching, user cart persistent states, secure payment processor APIs, and live invoice generation.",
+      tags: ["JavaScript", "Node.js", "MongoDB", "Stripe"],
+      github: "https://github.com/saivikas1278/ecommerce-website",
+      demo: "#",
+    },
+    {
+      title: "Weather Dashboard",
+      description: "A sleek geographical weather interface rendering 5-day metrics, temperature forecasts, wind velocities, and atmospheric pressure using secure open REST API architectures.",
+      tags: ["HTML5", "CSS3", "JavaScript", "REST API"],
+      github: "https://github.com/saivikas1278/weather-dashboard",
+      demo: "#",
+    },
+  ];
+
+  const skills = [
+    { name: "React", level: "Expert" },
+    { name: "Next.js", level: "Advanced" },
+    { name: "Tailwind CSS", level: "Expert" },
+    { name: "Node.js", level: "Advanced" },
+    { name: "Python", level: "Intermediate" },
+  ];
 
   return (
     <div className="relative min-h-screen selection:bg-[#F59E0B]/30 selection:text-white">
       {/* Navigation Header */}
-      <Navbar />
+      <header className="fixed top-0 left-0 right-0 h-16 bg-black/85 backdrop-blur-md border-b border-[#F59E0B]/15 z-50">
+        <div className="max-w-7xl mx-auto h-full px-4 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between relative">
+          {/* Brand Logo */}
+          <a href="#home" className="font-display font-black text-lg tracking-wider text-white">
+            <span className="inline-block border border-[#F97316]/50 px-2.5 py-1 rounded bg-[#F97316]/5 hover:shadow-[0_0_15px_rgba(249,115,22,0.3)] transition-all">
+              SV
+            </span>
+          </a>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-sans font-semibold text-xs uppercase tracking-widest text-zinc-400 hover:text-[#F59E0B] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* HIRE ME Button (Desktop) */}
+          <div className="hidden md:block">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center px-4 py-1.5 rounded-lg text-xs font-bold tracking-wider text-white bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] hover:shadow-[0_0_15px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95 transition-all duration-300"
+            >
+              HIRE ME
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex items-center justify-center w-9 h-9 border border-white/10 rounded-lg text-zinc-400 hover:text-white"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden absolute top-16 left-0 right-0 bg-black/95 border-b border-[#F59E0B]/15 px-6 py-6 flex flex-col gap-4 animate-fade-in">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-sans font-bold text-sm tracking-wide text-zinc-300 hover:text-[#F59E0B] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-2 w-full text-center px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444]"
+            >
+              HIRE ME
+            </a>
+          </nav>
+        )}
+      </header>
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="relative h-screen w-full flex flex-col justify-center items-center px-6 overflow-hidden"
-      >
-        <CanvasHero />
+      <section id="home" className="relative h-screen w-full flex flex-col justify-center items-center px-4 sm:px-8 md:px-12 lg:px-16 overflow-hidden">
+        {/* Soft Background Accent Glows */}
+        <div className="absolute top-[20%] left-[20%] w-[350px] h-[350px] rounded-full bg-[#F59E0B]/5 filter blur-[60px] pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[20%] w-[350px] h-[350px] rounded-full bg-[#EF4444]/5 filter blur-[60px] pointer-events-none" />
 
-        {/* Ambient overlay shadows */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#030303]" />
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center"
-        >
-          {/* Tagline Badge */}
-          <motion.span
-            variants={itemVariants}
-            className="text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#F97316] mb-6 bg-[#F97316]/10 border border-[#F97316]/20 shadow-[0_0_12px_rgba(249,115,22,0.15)] px-4 py-1.5 rounded-full"
-          >
-            CREATIVE PORTFOLIO
-          </motion.span>
-
-          {/* Headline Name */}
-          <motion.h1
-            variants={itemVariants}
-            className="font-display font-black text-5xl sm:text-7xl md:text-8xl tracking-tight text-white mb-4 uppercase"
-          >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-white to-zinc-400">
-              {profile.name}
-            </span>
-          </motion.h1>
-
-          {/* Subtitle Role */}
-          <motion.h2
-            variants={itemVariants}
-            className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-[0.18em] text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] uppercase mb-8"
-          >
-            {profile.role}
-          </motion.h2>
-
-          {/* Short description */}
-          <motion.p
-            variants={itemVariants}
-            className="font-sans text-base sm:text-lg text-zinc-400 max-w-md leading-relaxed"
-          >
-            {profile.tagline}
-          </motion.p>
-        </motion.div>
-
-        {/* Cinematic Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2.5 opacity-60 pointer-events-none select-none">
-          <span className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-400">
-            SCROLL
+        <div className="relative z-10 text-center max-w-3xl mx-auto flex flex-col items-center">
+          <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#F97316] mb-6 bg-[#F97316]/10 border border-[#F97316]/20 shadow-[0_0_12px_rgba(249,115,22,0.15)] px-4 py-1.5 rounded-full">
+            ENGINEERING & INNOVATION
           </span>
-          <div className="w-[1.5px] h-12 bg-white/10 overflow-hidden relative rounded-full">
-            <motion.div
-              animate={{
-                y: ["-100%", "100%"],
-              }}
-              transition={{
-                duration: 2.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-[#F59E0B] via-[#F97316] to-[#EF4444]"
-            />
+
+          <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl tracking-tight text-white mb-4 uppercase">
+            SAI VIKAS
+          </h1>
+
+          <h2 className="font-display font-bold text-xl sm:text-2xl md:text-3xl tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] uppercase mb-8">
+            Computer Science & IT Student / Developer
+          </h2>
+
+          <p className="font-sans text-sm sm:text-base text-zinc-400 max-w-lg leading-relaxed mb-10">
+            Currently pursuing my Bachelor's degree at SRKR Engineering College. Specializing in highly interactive frontends, real-time cricket auction apps, and scalable web architectures.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <a
+              href="#projects"
+              className="px-8 py-3.5 rounded-xl text-xs font-bold tracking-widest text-white bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
+            >
+              VIEW PROJECTS
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-3.5 rounded-xl text-xs font-bold tracking-widest text-zinc-300 border border-white/10 hover:border-[#F59E0B]/40 hover:bg-white/5 transition-all duration-300"
+            >
+              GET IN TOUCH
+            </a>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section
-        id="about"
-        className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#030303]"
-      >
-        <div className="glow-spot-1 top-[20%] left-[-10%]" />
-        
+      {/* About Me Section */}
+      <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-zinc-950/20 border-t border-white/5">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            
-            {/* Left Header columns */}
+            {/* Left Header */}
             <div className="lg:col-span-4 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-xs font-bold text-[#F97316] tracking-[0.2em] uppercase block">
                 01 / IDENTITY
@@ -182,45 +179,54 @@ export default function Home() {
               <div className="w-16 h-[2px] bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] mx-auto lg:mx-0" />
             </div>
 
-            {/* Right details content columns */}
+            {/* Right Details */}
             <div className="lg:col-span-8 space-y-8 text-center lg:text-left">
               <div className="space-y-6 text-zinc-400 font-sans text-base sm:text-lg leading-relaxed">
-                {profile.about.paragraphs.map((p, idx) => (
-                  <p key={idx} className="whitespace-pre-line">
-                    {p}
-                  </p>
-                ))}
+                <p>
+                  I'm a dedicated Computer Science & Information Technology student with a deep passion for building interactive web applications, real-time bid managers, and database models. My engineering journey is built around structured problem solving and crafting highly visual, responsive layouts.
+                </p>
+                <p>
+                  Beyond web structures, I am highly interested in playing cricket, coordinating local tournaments, tracking sports metrics, and working on competitive programming algorithms. I keep myself updated with cutting-edge libraries to build highly functional web systems.
+                </p>
               </div>
 
-              {/* Statistics Counters Grid */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-8 border-t border-white/5">
-                {profile.about.stats.map((stat, idx) => (
-                  <div key={idx} className="space-y-1">
-                    <span className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white block bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">
-                      {stat.value}
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase block">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
+              {/* Statistics Counters */}
+              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/5">
+                <div>
+                  <span className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 block">
+                    8.0
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase block mt-1">
+                    B.Tech GPA
+                  </span>
+                </div>
+                <div>
+                  <span className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 block">
+                    958
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase block mt-1">
+                    Intermediate Marks
+                  </span>
+                </div>
+                <div>
+                  <span className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 block">
+                    15,511
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-zinc-500 uppercase block mt-1">
+                    EAPCET Rank
+                  </span>
+                </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section
-        id="projects"
-        className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-black"
-      >
-        <div className="glow-spot-2 bottom-[10%] right-[-10%]" />
-
+      <section id="projects" className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
             <div className="space-y-4 text-center md:text-left flex flex-col items-center md:items-start w-full md:w-auto">
               <span className="text-xs font-bold text-[#F97316] tracking-[0.2em] uppercase block">
                 02 / WORK
@@ -231,49 +237,79 @@ export default function Home() {
               <div className="w-16 h-[2px] bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] mx-auto md:mx-0" />
             </div>
             <p className="text-zinc-400 font-sans text-sm sm:text-base max-w-md leading-relaxed text-center md:text-left mx-auto md:mx-0">
-              Here are some of the projects I&apos;ve worked on. Each project represents different skills and technologies I&apos;ve learned.
+              Each project is curated to showcase a practical approach to real-life challenges, utilizing robust algorithms, clean databases, and smooth animations.
             </p>
           </div>
 
-          {/* Fluid 12-Column Bento Grid Overhaul */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 pb-16">
-            {profile.projects.map((project, idx) => {
-              // Custom balanced spans: 0 is md:span-8, 1 is md:span-4, 2-4 are md:span-4, 5 is md:span-12
-              let colSpanClass = "md:col-span-4";
-              if (idx === 0) colSpanClass = "md:col-span-8";
-              if (idx === 5) colSpanClass = "md:col-span-12";
-              
-              return (
-                <div key={idx} className={colSpanClass}>
-                  <ProjectCard project={project} index={idx} />
-                </div>
-              );
-            })}
-          </div>
+          {/* Symmetrical Bento Grid (2 columns on desktop) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pb-16">
+            {projects.map((project, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-[24px] p-[1px] bg-white/5 hover:bg-gradient-to-br hover:from-[#F59E0B] hover:to-[#F97316] transition-all duration-500 hover:scale-[1.01] hover:shadow-[0_20px_50px_rgba(245,158,11,0.12)]"
+              >
+                <div 
+                  className="relative rounded-[23px] overflow-hidden flex flex-col h-full backdrop-blur-md p-6 sm:p-8 justify-between gap-6"
+                  style={{ backgroundColor: "rgba(10, 10, 10, 0.75)" }}
+                >
+                  {/* Giant Faint Watermark Layer */}
+                  <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
+                    <span className="font-display font-black text-6xl sm:text-8xl tracking-[0.25em] uppercase text-white/[0.01]">
+                      WORK
+                    </span>
+                  </div>
 
-          {/* External GitHub Action Button */}
-          <div className="text-center mt-12 sm:mt-16">
-            <a
-              href="https://github.com/saivikas1278"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 border border-white/10 rounded-xl text-xs font-bold tracking-widest text-white bg-white/5 hover:border-[#F59E0B]/40 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all duration-300 uppercase cursor-pointer"
-            >
-              View All Projects on GitHub
-              <ArrowUpRight size={14} />
-            </a>
+                  <div className="relative z-10 space-y-4">
+                    <h3 className="font-display font-bold text-xl sm:text-2xl text-white group-hover:text-[#F59E0B] transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 space-y-6 mt-auto">
+                    {/* Tech Pills */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full border border-[#F59E0B]/20 bg-[#F59E0B]/5 text-[#FDE68A]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Anchors */}
+                    <div className="flex items-center gap-3 w-full pt-2">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold tracking-widest text-white border border-white/10 bg-transparent hover:bg-white/5 hover:border-white/20 transition-all duration-300 active:scale-95 shrink-0"
+                      >
+                        GITHUB
+                      </a>
+                      <a
+                        href={project.demo}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold tracking-widest text-white bg-gradient-to-r from-[#F97316] to-[#EF4444] hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all duration-300 active:scale-95 shrink-0"
+                      >
+                        DEMO
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section
-        id="skills"
-        className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#030303]"
-      >
+      <section id="skills" className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#030303] border-t border-white/5">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            
             {/* Left Header */}
             <div className="lg:col-span-4 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-xs font-bold text-[#F97316] tracking-[0.2em] uppercase block">
@@ -286,132 +322,42 @@ export default function Home() {
             </div>
 
             {/* Right Skills Category layouts */}
-            <div className="lg:col-span-8 space-y-12">
-              
-              {/* Frontend Category */}
-              <div className="space-y-4 text-center lg:text-left">
-                <h3 className="font-display font-bold text-xl text-white tracking-wider uppercase border-l-0 lg:border-l-2 border-[#F59E0B] pl-0 lg:pl-3">
-                  Frontend
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {profile.skills.frontend.map((skill, idx) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="glass-panel p-4 rounded-xl flex flex-col items-center gap-3 text-center transition-all duration-300 hover:border-[#F59E0B]/30 hover:shadow-[0_0_15px_rgba(245,158,11,0.15)]"
-                    >
-                      <div className="relative w-8 h-8 flex items-center justify-center">
-                        <Image
-                          src={skill.image}
-                          alt={skill.name}
-                          width={32}
-                          height={32}
-                          className="object-contain"
-                        />
-                      </div>
-                      <span className="text-sm font-semibold tracking-wide text-zinc-300">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+            <div className="lg:col-span-8 space-y-8">
+              <h3 className="font-display font-bold text-xl text-white tracking-wider uppercase border-l-2 border-[#F59E0B] pl-3 mb-6 text-left">
+                Technical Stack
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {skills.map((skill, idx) => (
+                  <div
+                    key={skill.name}
+                    className="glass-panel p-5 rounded-2xl flex flex-col items-start gap-2 border border-white/5 bg-zinc-950/40 hover:border-[#F59E0B]/30 hover:shadow-[0_0_15px_rgba(245,158,11,0.1)] transition-all duration-300"
+                  >
+                    <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-lg font-bold tracking-wide text-white">
+                      {skill.name}
+                    </span>
+                    <span className="text-xs font-semibold tracking-widest text-[#FDE68A] uppercase">
+                      {skill.level}
+                    </span>
+                  </div>
+                ))}
               </div>
-
-              {/* Backend Category */}
-              <div className="space-y-4 text-center lg:text-left">
-                <h3 className="font-display font-bold text-xl text-white tracking-wider uppercase border-l-0 lg:border-l-2 border-[#EF4444] pl-0 lg:pl-3">
-                  Backend
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {profile.skills.backend.map((skill, idx) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="glass-panel p-4 rounded-xl flex flex-col items-center gap-3 text-center transition-all duration-300 hover:border-[#EF4444]/30 hover:shadow-[0_0_15px_rgba(239,68,68,0.15)]"
-                    >
-                      <div className="relative w-8 h-8 flex items-center justify-center">
-                        <Image
-                          src={skill.image}
-                          alt={skill.name}
-                          width={32}
-                          height={32}
-                          className="object-contain"
-                        />
-                      </div>
-                      <span className="text-sm font-semibold tracking-wide text-zinc-300">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Education & Timeline Section */}
-      <section
-        id="education"
-        className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#050508]"
-      >
-        <div className="max-w-7xl mx-auto relative z-10">
-          
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
-            <div className="space-y-4 text-center md:text-left flex flex-col items-center md:items-start w-full md:w-auto">
-              <span className="text-xs font-bold text-[#F97316] tracking-[0.2em] uppercase block">
-                04 / EDUCATION
-              </span>
-              <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-wide uppercase">
-                Academics & Timelines
-              </h2>
-              <div className="w-16 h-[2px] bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] mx-auto md:mx-0" />
             </div>
           </div>
-
-          {/* Custom flowing responsive timeline */}
-          <EducationTimeline education={profile.education} />
-
-          {/* Dynamic Grid Certifications */}
-          <div className="mt-24 pt-24 border-t border-white/5">
-            <h3 className="font-display font-bold text-2xl text-white uppercase tracking-wide mb-8 text-center md:text-left">
-              Professional Certifications
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {profile.certifications.map((cert, idx) => (
-                <CertificationCard key={idx} certification={cert} index={idx} />
-              ))}
-            </div>
-          </div>
-
         </div>
       </section>
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-[#030303]"
-      >
-        <div className="glow-spot-1 top-[20%] right-[-10%]" />
-
+      <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-8 md:px-12 lg:px-16 bg-zinc-950/20 border-t border-white/5">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            
-            {/* Left Header columns */}
+            {/* Left Column Header Details */}
             <div className="lg:col-span-5 space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="space-y-4 text-center lg:text-left flex flex-col items-center lg:items-start w-full">
                 <span className="text-xs font-bold text-[#F97316] tracking-[0.2em] uppercase block">
-                  05 / ENGAGE
+                  04 / ENGAGE
                 </span>
                 <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-wide uppercase">
                   Contact
@@ -419,85 +365,95 @@ export default function Home() {
                 <div className="w-16 h-[2px] bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] mx-auto lg:mx-0" />
               </div>
 
-              <p className="font-sans text-base text-zinc-400 leading-relaxed max-w-md text-center lg:text-left mx-auto lg:mx-0">
-                {profile.contact.text}
+              <p className="font-sans text-sm sm:text-base text-zinc-400 leading-relaxed max-w-md">
+                I'm always open to discussing new freelance roles, sports app ideas, full-stack database integrations, or technical collaborations. Let's create something functional!
               </p>
 
-              {/* Direct Info list dials */}
+              {/* Direct Info List */}
               <div className="space-y-4 pt-6 border-t border-white/5 w-full">
                 <a
-                  href={`mailto:${profile.contact.email}`}
-                  className="flex items-center justify-center lg:justify-start gap-3.5 group text-zinc-400 hover:text-white transition-colors py-1 cursor-pointer"
+                  href="mailto:cheepusaivikas549@gmail.com"
+                  className="flex items-center justify-center lg:justify-start gap-3.5 group text-zinc-400 hover:text-white transition-colors"
                 >
                   <span className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-[#F97316] group-hover:border-[#F97316]/45 group-hover:shadow-[0_0_10px_rgba(249,115,22,0.2)] transition-all duration-300">
-                    <Mail size={16} />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
                   </span>
                   <span className="text-sm font-semibold tracking-wide">
-                    {profile.contact.email}
+                    cheepusaivikas549@gmail.com
                   </span>
                 </a>
-                
-                {profile.contact.phones.map((phone) => (
+
+                <div className="flex flex-col gap-4">
                   <a
-                    key={phone}
-                    href={`tel:${phone.replace(/\s+/g, "")}`}
-                    className="flex items-center justify-center lg:justify-start gap-3.5 group text-zinc-400 hover:text-white transition-colors py-1 cursor-pointer"
+                    href="tel:+917989001874"
+                    className="flex items-center justify-center lg:justify-start gap-3.5 group text-zinc-400 hover:text-white transition-colors"
                   >
                     <span className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-[#F97316] group-hover:border-[#F97316]/45 group-hover:shadow-[0_0_10px_rgba(249,115,22,0.2)] transition-all duration-300">
-                      <Phone size={16} />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
                     </span>
                     <span className="text-sm font-semibold tracking-wide">
-                      {phone}
+                      +91 7989001874
                     </span>
                   </a>
-                ))}
+                </div>
               </div>
 
-              {/* Social links handles */}
+              {/* Social icons */}
               <div className="flex items-center justify-center lg:justify-start gap-3 pt-6 w-full">
                 <a
-                  href={profile.contact.socials.github}
+                  href="https://github.com/saivikas1278"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 hover:text-[#F59E0B] hover:border-[#F59E0B]/45 hover:shadow-[0_0_12px_rgba(245,158,11,0.35)] hover:bg-white/10 transition-all duration-300 cursor-pointer"
-                  title="GitHub Profile"
+                  className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 hover:text-[#F59E0B] hover:border-[#F59E0B]/45 hover:shadow-[0_0_12px_rgba(245,158,11,0.35)] hover:bg-white/10 transition-all duration-300"
                 >
-                  <GithubIcon size={16} />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
                 </a>
                 <a
-                  href={profile.contact.socials.linkedin}
+                  href="https://linkedin.com/in/sai-vikas"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 hover:text-[#F97316] hover:border-[#F97316]/45 hover:shadow-[0_0_12px_rgba(249,115,22,0.35)] hover:bg-white/10 transition-all duration-300 cursor-pointer"
-                  title="LinkedIn Profile"
+                  className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 hover:text-[#F97316] hover:border-[#F97316]/45 hover:shadow-[0_0_12px_rgba(249,115,22,0.35)] hover:bg-white/10 transition-all duration-300"
                 >
-                  <LinkedinIcon size={16} />
-                </a>
-                <a
-                  href={profile.contact.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-400 hover:text-[#EF4444] hover:border-[#EF4444]/45 hover:shadow-[0_0_12px_rgba(239,68,68,0.35)] hover:bg-white/10 transition-all duration-300 cursor-pointer"
-                  title="Twitter Profile"
-                >
-                  <TwitterIcon size={16} />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
                 </a>
               </div>
             </div>
 
-            {/* Right Column Contact Form */}
-            <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-2xl relative">
-              <ContactForm emailjsConfig={profile.contact.emailjs} />
+            {/* Right Column simple text card */}
+            <div className="lg:col-span-7 p-8 rounded-2xl border border-white/5 bg-zinc-950/40 relative overflow-hidden flex flex-col justify-center min-h-[250px]">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#F59E0B]/5 rounded-full filter blur-xl" />
+              <h3 className="font-display font-bold text-xl text-white mb-3 tracking-wide">
+                Looking for a custom project?
+              </h3>
+              <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">
+                I build fast, interactive, and customized single-page React and Next.js applications featuring responsive tailwind components and seamless static exports. Write to me via email or phone and I'll respond within 24 hours.
+              </p>
+              <a
+                href="mailto:cheepusaivikas549@gmail.com"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold tracking-widest text-xs text-white bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#EF4444] hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 uppercase w-full sm:w-auto self-start"
+              >
+                Send Message
+              </a>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Modern minimal footer bar */}
-      <footer className="py-8 text-center border-t border-white/5 bg-[#030303] text-zinc-500 font-sans text-xs">
+      {/* Footer */}
+      <footer className="py-8 text-center border-t border-white/5 bg-black text-zinc-600 font-sans text-xs">
         <div className="max-w-7xl mx-auto px-6">
-          <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} SAI VIKAS. All rights reserved.</p>
         </div>
       </footer>
     </div>
