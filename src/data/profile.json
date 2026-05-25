@@ -1,0 +1,155 @@
+{
+  "name": "SAI VIKAS",
+  "role": "FULL STACK DEVELOPER",
+  "tagline": "Crafting digital experiences through code",
+  "about": {
+    "paragraphs": [
+      "I'm a dedicated Computer Science and information technologie student with a passion for web development, data science, and artificial intelligence. My journey in tech began when I built my first website in 2nd year , and I've been hooked ever since.",
+      "Currently pursuing my Bachelor's degree in Computer Science and information technologie at SRKR engineering college, where I'm maintaining a [ ]GPA. During my academic journey, I've developed strong problem-solving skills, attention to detail, and the ability to work effectively both independently and as part of a team.\n>Outside of academics, I enjoy contributing to open-source projects, participating in hackathons, and mentoring junior programming students. I'm constantly learning new technologies and approaches to stay at the forefront of this rapidly evolving field. I also love to play cricket and watch movies and more-like to travel and listen to music."
+    ],
+    "stats": [
+      {
+        "value": "5",
+        "label": "Projects"
+      },
+      {
+        "value": "2+",
+        "label": "Years"
+      },
+      {
+        "value": "5",
+        "label": "Technologies"
+      }
+    ]
+  },
+  "skills": {
+    "frontend": [
+      { "name": "React", "image": "/assets/images/react.png" },
+      { "name": "JavaScript", "image": "/assets/images/js.png" },
+      { "name": "HTML5", "image": "/assets/images/html.png" },
+      { "name": "CSS3", "image": "/assets/images/css.png" }
+    ],
+    "backend": [
+      { "name": "Node.js", "image": "/assets/images/node.png" },
+      { "name": "Express", "image": "/assets/images/express.png" },
+      { "name": "MongoDB", "image": "/assets/images/mongodb.png" }
+    ]
+  },
+  "projects": [
+    {
+      "title": "E-commerce Website",
+      "description": "A full-stack e-commerce platform built with JavaScript, Node.js, MongoDB, and Stripe for payments.",
+      "tags": ["JavaScript", "MongoDB", "Node.js", "Stripe"],
+      "github": "https://github.com/username/ecommerce-website",
+      "demo": "https://ecommerce-demo.example.com"
+    },
+    {
+      "title": "Task Management App",
+      "description": "A productivity app that helps users organize tasks, set deadlines, and track progress.",
+      "tags": ["HTML/CSS", "JavaScript", "Firebase"],
+      "github": "https://github.com/username/task-management",
+      "demo": "https://task-app-demo.example.com"
+    },
+    {
+      "title": "Weather Dashboard",
+      "description": "A weather application that provides real-time weather information using a third-party API.",
+      "tags": ["HTML/CSS", "JavaScript", "API"],
+      "github": "https://github.com/username/weather-dashboard",
+      "demo": "https://weather-demo.example.com"
+    },
+    {
+      "title": "Weather Dashboard",
+      "description": "A weather application that provides real-time weather information using a third-party API.",
+      "tags": ["HTML/CSS", "JavaScript", "API"],
+      "github": "https://github.com/username/weather-dashboard",
+      "demo": "https://weather-demo.example.com"
+    },
+    {
+      "title": "Weather Dashboard",
+      "description": "A weather application that provides real-time weather information using a third-party API.",
+      "tags": ["HTML/CSS", "JavaScript", "API"],
+      "github": "https://github.com/username/weather-dashboard",
+      "demo": "https://weather-demo.example.com"
+    },
+    {
+      "title": "Portfolio Website",
+      "description": "A personal portfolio website to showcase my skills, projects, and experience.",
+      "tags": ["HTML/CSS", "JavaScript", "Responsive"],
+      "github": "https://github.com/username/portfolio",
+      "demo": "#"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science and information technologie",
+      "institution": "Sagi rama krishnam Raju Engineering College",
+      "date": "2027 - Present",
+      "gpa": "GPA: 8.0/10.0",
+      "description": "Focused on software engineering, algorithms, and data structures. Active member of the Computer Science Club and Competitive Programming Team.",
+      "coursework": [
+        "Data Structures and Algorithms",
+        "Web Development",
+        "Database Systems",
+        "Operating Systems",
+        "Artificial Intelligence",
+        "Software Engineering"
+      ]
+    },
+    {
+      "degree": "",
+      "institution": "Tirumala junior college",
+      "date": "passout 2023",
+      "gpa": "",
+      "marks": "958/1000",
+      "jee": "65%",
+      "eapcet": "15511",
+      "description": "am pleased to introduce myself as a student who has successfully completed my Intermediate education at Tirumala Junior College, specializing in the MPC (Mathematics, Physics, and Chemistry) branch. During my time at Tirumala, I achieved a score of 958 marks in the IPE (Intermediate Public Examination), reflecting my strong academic foundation in these core subjects. Additionally, I secured a 65% score in the JEE and attained a rank of 15,511 in the EAPCET, demonstrating my competitive performance in these entrance examinations. This journey has equipped me with the knowledge and skills to pursue further academic and professional goals in the field of science and technology."
+    },
+    {
+      "degree": "",
+      "institution": "SREE SREE english medium high school",
+      "date": "passout 2021",
+      "gpa": "10.0/10.0",
+      "description": "I am pleased to introduce myself as a student who has successfully completed my SSC at Sree Sree English Medium High School. I excelled in my examinations, achieving a perfect score of 10/10, which reflects my strong academic foundation and dedication during this phase of my education"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Full-Stack Web Development",
+      "issuer": "Udemy",
+      "date": "March 2023",
+      "credentialId": "Credential ID: UC-12345",
+      "image": "/assets/images/cer1.png"
+    },
+    {
+      "title": "React - The Complete Guide",
+      "issuer": "Coursera",
+      "date": "September 2022",
+      "credentialId": "Credential ID: CR-67890"
+    },
+    {
+      "title": "Python for Data Science",
+      "issuer": "edX",
+      "date": "January 2023",
+      "credentialId": "Credential ID: EDX-24680"
+    }
+  ],
+  "contact": {
+    "text": "Let's create something amazing together. I'm always open to discussing new opportunities.",
+    "email": "cheepusaivikas549@gmail.com",
+    "phones": [
+      "+91 7989001874",
+      "+91 8019530260"
+    ],
+    "socials": {
+      "github": "https://github.com/sai",
+      "linkedin": "https://linkedin.com/in/sai",
+      "twitter": "https://twitter.com/sai"
+    },
+    "emailjs": {
+      "publicKey": "IszgZjQjoAHMzT-uD",
+      "serviceId": "service_aa3t9rc",
+      "templateId": "template_4j1009q"
+    }
+  }
+}
